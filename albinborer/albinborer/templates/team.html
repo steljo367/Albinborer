@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load staticfiles static i18n cms_tags sekizai_tags cms_tags %}
+
+{% block content %}
+
+<span class='entry-sub-title'>
+	{% page_attribute "page_title" %} | Title Dropdown
+</span>
+<section>
+	<div class="team-section mt-5">
+		<h2 class="news-title">Team</h2>
+	</div>
+
+	<div class="team-search p-0-15 mt-3">
+		<div class="location-filter pointer dropdown-list">
+			<ul class="p-0 m-0">
+				<li class="list-item all selected"><i class="fa fa-angle-down" aria-hidden="true"></i>Abteilung auswählen</li>
+				{% for x in member %}
+				<li data-toggle="{{ x.location }}">{{ x.location }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<div class="search-result">
+			{% for x in member %}
+			<div data-id="{{ x.location }}" class="post-result post">
+				<div class="row">
+					<div class="col col-12">
+						<h4>{{ x.name }}</h4>
+						<h4>{{ x.designation }}</h4>
+						<img src="/media/filer_public_thumbnails/filer_public/c7/42/c74257e9-8b98-478e-b8d0-23a5ffe60028/antonborer-300x154.png__300x154_q85_subsampling-2.png" alt="" class="img-fluid">
+						<!--<img src="{{ x.image }}" alt="" class="img-fluid">-->
+						<div class="container-fluid">
+							<p>
+								{{ x.board_member }}<br>
+								{{ x.board_detail }}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+{% endblock content %}
